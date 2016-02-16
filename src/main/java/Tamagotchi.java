@@ -36,9 +36,11 @@ public class Tamagotchi {
     return mExerciseLevel;
   }
 
-  // public addExercise() {
-  //
-  // }
+  public void addExercise() {
+    mExerciseLevel += 2;
+    mFoodLevel -= 1;
+    mSleepLevel -= 1;
+  }
   //
   // public addFood() {
   //

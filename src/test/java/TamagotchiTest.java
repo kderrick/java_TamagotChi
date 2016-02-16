@@ -25,4 +25,14 @@ public class TamagotchiTest {
     assertEquals("lil dragon", myPet.getName());
     assertEquals("alive", myPet.isAliveOrDead());
   }
+  @Test
+  public void tamagotchi_increaseExercise() {
+    Tamagotchi myPet = new Tamagotchi("lil dragon", 10, 10, 10);
+    myPet.addExercise();
+    assertEquals("lil dragon", myPet.getName());
+    assertEquals(9, myPet.getFoodLevel());
+    assertEquals(9, myPet.getSleepLevel());
+    assertEquals(12, myPet.getExerciseLevel());
+  }
+
 }
