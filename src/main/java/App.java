@@ -11,27 +11,36 @@ public class App {
         staticFileLocation("/public");
         String layout = "templates/layout.vtl";
 
-        //RESTful ARCHITECTURE
-        //Use POST to create something on the server
-        //Use GET to retrieve something from the server
-        //Use PUT to change or update something on the server
-        //Use DELETE to remove or delete something on the server
-        //Keep URLs intuitive
-        //Each request from client contains all info necessary for that request
+        get("/", (request, response) -> {
+          HashMap<String, Object> model = new HashMap<String, Object>();
+          model.put("name", request.session().attribute("name"));
+          model.put("Sleep", request.session().attribute("mSleepLevel"));
+          model.put("Food", request.session().attribute("mFoodLevel"));
+          model.put("Exercise", request.session().attribute("mExerciseLevel"));
+          model.put("template", "templates/index.vtl");
+          return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
 
-        //ROUTES: Home Page
+        post("/welcome", (request, response) -> {
+          HashMap<String, Object> model = new HashMap<String, Object>();
 
-        // get("/", (request, response) -> {
-        //     HashMap<String, Object> model = new HashMap<String, Object>();
+          String inputtedName = request.queryParams("name");
+          Tamagotchi userTamagotchi = new Tamagotchi(inputtedName, 10, 10, 10);
+          int displaySleep = userTamagotchi.getSleepLevel();
+          int displayFood = userTamagotchi.getFoodLevel();
+          int displayExercise = userTamagotchi.getExerciseLevel();
 
-        //     model.put("template", "templates/index.vtl");
-        //     return new ModelAndView(model, layout);
-        // }, new VelocityTemplateEngine());
 
-        //ROUTES: Identification of Resources
 
-        //ROUTES: Changing Resources
+          request.session().attribute("name", inputtedName);
+          model.put("tamagotchiName", inputtedName);
+          model.put("Sleep", displaySleep);
+          model.put("Food", displayFood);
+          model.put("Exercise", displayExercise);
 
+          model.put("template", "templates/index.vtl");
+          return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
     }
 }
 

@@ -1,0 +1,19 @@
+#if($name)
+Welcome $tamagotchiName
+#else
+
+
+<h1>Create Your Tamagotchi</h1>
+<form action="/welcome" method="post">
+  <label for="name">Your name</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Submit name</button>
+</form>
+#end
+<button id="sleepBtn" type="button" name="sleepBtn"></button>
+<button id="foodBtn" type="button" name="foodBtn"></button>
+<button id= "exerciseBtn" type="button" name="exerciseBtn"></button>
+
+
+<p> Current Sleep Level: $Sleep, Current Food Level: $Food, Current Exercise Level: $Exercise </p>

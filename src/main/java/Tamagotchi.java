@@ -23,7 +23,9 @@ public class Tamagotchi {
 
   public String isAliveOrDead() {
     if((mFoodLevel == 0) || (mSleepLevel == 0) || (mExerciseLevel == 0)) {
-      mStatus = "dead";
+      mStatus = mName + " " + "is dead";
+    } else {
+      mStatus = mName + " " + "is alive";
     }
     return mStatus;
   }
@@ -41,12 +43,17 @@ public class Tamagotchi {
     mFoodLevel -= 1;
     mSleepLevel -= 1;
   }
-  //
-  // public addFood() {
-  //
-  // }
-  //
-  // public addSleep() {
-  //
-  // }
+
+  public void addFood() {
+    mFoodLevel += 2;
+    mSleepLevel -= 1;
+    mExerciseLevel -= 1;
   }
+
+  public void addSleep() {
+    mSleepLevel += 2;
+    mFoodLevel -= 1;
+    mExerciseLevel -= 1;
+  }
+
+}
