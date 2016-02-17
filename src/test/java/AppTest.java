@@ -23,6 +23,12 @@ public class AppTest extends FluentTest {
       assertThat(pageSource()).contains("Create Your Tamagotchi");
   }
 
-
-  //Tests go here
+  @Test
+  public void taskIsDisplayedTest() {
+    goTo("http://localhost:4567/");
+    fill("#name").with("Tommy");
+    submit("#submitBtn");
+    click("#sleepBtn");
+    assertThat(pageSource()).contains("12");
+  }
 }

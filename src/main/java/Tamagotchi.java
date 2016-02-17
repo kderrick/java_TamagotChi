@@ -55,5 +55,4 @@ public class Tamagotchi {
     mFoodLevel -= 1;
     mExerciseLevel -= 1;
   }
-
 }

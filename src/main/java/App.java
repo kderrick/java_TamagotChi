@@ -13,6 +13,7 @@ public class App {
 
         get("/", (request, response) -> {
           HashMap<String, Object> model = new HashMap<String, Object>();
+          String inputtedName = request.queryParams("name");
           model.put("name", request.session().attribute("name"));
           model.put("Sleep", request.session().attribute("mSleepLevel"));
           model.put("Food", request.session().attribute("mFoodLevel"));
@@ -31,8 +32,8 @@ public class App {
           int displayExercise = userTamagotchi.getExerciseLevel();
 
 
-
-          request.session().attribute("name", inputtedName);
+          request.session().attribute("tamagotchi", userTamagotchi);
+          model.put("name", inputtedName);
           model.put("tamagotchiName", inputtedName);
           model.put("Sleep", displaySleep);
           model.put("Food", displayFood);
@@ -41,6 +42,100 @@ public class App {
           model.put("template", "templates/index.vtl");
           return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
+
+        post("/sleep", (request, response) -> {
+          HashMap<String, Object> model = new HashMap<String, Object>();
+
+
+          Tamagotchi tempTamagotchi = request.session().attribute("tamagotchi");
+
+          tempTamagotchi.addSleep();
+
+          String inputtedName = tempTamagotchi.getName();
+          int displaySleep = tempTamagotchi.getSleepLevel();
+          int displayFood = tempTamagotchi.getFoodLevel();
+          int displayExercise = tempTamagotchi.getExerciseLevel();
+
+
+          request.session().attribute("tamagotchi", tempTamagotchi);
+
+          request.session().attribute("name", inputtedName);
+          request.session().attribute("Sleep", displaySleep);
+          request.session().attribute("Food", displayFood);
+          request.session().attribute("Exercise", displayExercise);
+
+          model.put("name", inputtedName);
+          model.put("tamagotchiName", inputtedName);
+          model.put("Sleep", displaySleep);
+          model.put("Food", displayFood);
+          model.put("Exercise", displayExercise);
+
+          model.put("template", "templates/index.vtl");
+          return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+
+        post("/food", (request, response) -> {
+          HashMap<String, Object> model = new HashMap<String, Object>();
+
+
+          Tamagotchi tempTamagotchi = request.session().attribute("tamagotchi");
+
+          tempTamagotchi.addFood();
+
+          String inputtedName = tempTamagotchi.getName();
+          int displaySleep = tempTamagotchi.getSleepLevel();
+          int displayFood = tempTamagotchi.getFoodLevel();
+          int displayExercise = tempTamagotchi.getExerciseLevel();
+
+
+          request.session().attribute("tamagotchi", tempTamagotchi);
+
+          request.session().attribute("name", inputtedName);
+          request.session().attribute("Sleep", displaySleep);
+          request.session().attribute("Food", displayFood);
+          request.session().attribute("Exercise", displayExercise);
+
+          model.put("name", inputtedName);
+          model.put("tamagotchiName", inputtedName);
+          model.put("Sleep", displaySleep);
+          model.put("Food", displayFood);
+          model.put("Exercise", displayExercise);
+
+          model.put("template", "templates/index.vtl");
+          return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+
+        post("/exercise", (request, response) -> {
+          HashMap<String, Object> model = new HashMap<String, Object>();
+
+
+          Tamagotchi tempTamagotchi = request.session().attribute("tamagotchi");
+
+          tempTamagotchi.addExercise();
+
+          String inputtedName = tempTamagotchi.getName();
+          int displaySleep = tempTamagotchi.getSleepLevel();
+          int displayFood = tempTamagotchi.getFoodLevel();
+          int displayExercise = tempTamagotchi.getExerciseLevel();
+
+
+          request.session().attribute("tamagotchi", tempTamagotchi);
+
+          request.session().attribute("name", inputtedName);
+          request.session().attribute("Sleep", displaySleep);
+          request.session().attribute("Food", displayFood);
+          request.session().attribute("Exercise", displayExercise);
+
+          model.put("name", inputtedName);
+          model.put("tamagotchiName", inputtedName);
+          model.put("Sleep", displaySleep);
+          model.put("Food", displayFood);
+          model.put("Exercise", displayExercise);
+
+          model.put("template", "templates/index.vtl");
+          return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+
     }
 }
 
