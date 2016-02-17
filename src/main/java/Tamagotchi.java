@@ -22,10 +22,10 @@ public class Tamagotchi {
   }
 
   public String isAliveOrDead() {
-    if((mFoodLevel == 0) || (mSleepLevel == 0) || (mExerciseLevel == 0)) {
-      mStatus = mName + " " + "is dead";
+    if((mFoodLevel <= 0) || (mSleepLevel <= 0) || (mExerciseLevel <= 0)) {
+      mStatus = "true";
     } else {
-      mStatus = mName + " " + "is alive";
+      mStatus = "false";
     }
     return mStatus;
   }

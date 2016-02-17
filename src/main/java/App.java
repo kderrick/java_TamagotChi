@@ -14,10 +14,10 @@ public class App {
         get("/", (request, response) -> {
           HashMap<String, Object> model = new HashMap<String, Object>();
           String inputtedName = request.queryParams("name");
-          model.put("name", request.session().attribute("name"));
-          model.put("Sleep", request.session().attribute("mSleepLevel"));
-          model.put("Food", request.session().attribute("mFoodLevel"));
-          model.put("Exercise", request.session().attribute("mExerciseLevel"));
+          // model.put("name", request.session().attribute("name"));
+          // model.put("Sleep", request.session().attribute("mSleepLevel"));
+          // model.put("Food", request.session().attribute("mFoodLevel"));
+          // model.put("Exercise", request.session().attribute("mExerciseLevel"));
           model.put("template", "templates/index.vtl");
           return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
@@ -55,7 +55,7 @@ public class App {
           int displaySleep = tempTamagotchi.getSleepLevel();
           int displayFood = tempTamagotchi.getFoodLevel();
           int displayExercise = tempTamagotchi.getExerciseLevel();
-
+          String displayDead = tempTamagotchi.isAliveOrDead();
 
           request.session().attribute("tamagotchi", tempTamagotchi);
 
@@ -64,6 +64,7 @@ public class App {
           request.session().attribute("Food", displayFood);
           request.session().attribute("Exercise", displayExercise);
 
+          model.put("dead", displayDead);
           model.put("name", inputtedName);
           model.put("tamagotchiName", inputtedName);
           model.put("Sleep", displaySleep);
@@ -82,11 +83,12 @@ public class App {
 
           tempTamagotchi.addFood();
 
+
           String inputtedName = tempTamagotchi.getName();
           int displaySleep = tempTamagotchi.getSleepLevel();
           int displayFood = tempTamagotchi.getFoodLevel();
           int displayExercise = tempTamagotchi.getExerciseLevel();
-
+          String displayDead = tempTamagotchi.isAliveOrDead();
 
           request.session().attribute("tamagotchi", tempTamagotchi);
 
@@ -95,6 +97,7 @@ public class App {
           request.session().attribute("Food", displayFood);
           request.session().attribute("Exercise", displayExercise);
 
+          model.put("dead", displayDead);
           model.put("name", inputtedName);
           model.put("tamagotchiName", inputtedName);
           model.put("Sleep", displaySleep);
@@ -112,11 +115,13 @@ public class App {
           Tamagotchi tempTamagotchi = request.session().attribute("tamagotchi");
 
           tempTamagotchi.addExercise();
+          tempTamagotchi.isAliveOrDead();
 
           String inputtedName = tempTamagotchi.getName();
           int displaySleep = tempTamagotchi.getSleepLevel();
           int displayFood = tempTamagotchi.getFoodLevel();
           int displayExercise = tempTamagotchi.getExerciseLevel();
+          String displayDead = tempTamagotchi.isAliveOrDead();
 
 
           request.session().attribute("tamagotchi", tempTamagotchi);
@@ -126,6 +131,7 @@ public class App {
           request.session().attribute("Food", displayFood);
           request.session().attribute("Exercise", displayExercise);
 
+          model.put("dead", displayDead);
           model.put("name", inputtedName);
           model.put("tamagotchiName", inputtedName);
           model.put("Sleep", displaySleep);

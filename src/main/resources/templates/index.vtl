@@ -1,4 +1,6 @@
-#if($name)
+#if($dead.equals("true"))
+  <a href="/">You killed your Tamagotchi. Try again.</a>
+#elseif($name)
 Welcome $tamagotchiName
 <form action="/sleep" method="post">
   <button id="sleepBtn" type="submit" name="sleepBtn">Sleep</button>
@@ -19,8 +21,4 @@ Welcome $tamagotchiName
 
   <button id="submitBtn" type="submit">Submit name</button>
 </form>
-
-
-
-
 #end
